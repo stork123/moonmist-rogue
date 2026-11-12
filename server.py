@@ -196,11 +196,10 @@ class DfrotzSession:
                         body_lines.append(stripped)
                 else:
                     body_lines.append(line)
-                # Skip dfrotz debug messages in brackets
-            # Remove trailing empty lines and bracket-only debug lines
+            # Remove trailing empty lines and known prompts
             while body_lines:
                 last = body_lines[-1].strip()
-                if last == '' or last.startswith('[') or last in ('What next?', 'What would you like to do?'):
+                if last == '' or last in ('What next?', 'What would you like to do?'):
                     body_lines.pop()
                 else:
                     break
