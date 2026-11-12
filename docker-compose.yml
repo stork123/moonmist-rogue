@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  moonmist:
+    build: .
+    ports:
+      - "5003:5000"
+    environment:
+      - DFROTZ_CMD=dfrotz
+      - MAX_SESSIONS=20
+    restart: unless-stopped

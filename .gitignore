@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.exe
+!dfrotz.exe
+__pycache__/
+*.pyc
+.DS_Store
+saves/
+*.qzl

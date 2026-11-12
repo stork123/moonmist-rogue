@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moonmist — Visual Mapper</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#050610; --panel:#0a0a16; --border:#161628;
+    --fg:#c4c4d8; --accent:#99bbdd; --green:#66ddaa;
+    --blue:#6688dd; --dim:#161628; --text-dim:#444466;
+  }
+  body {
+    background:var(--bg); color:var(--fg);
+    font-family:'Cascadia Mono','Fira Code','Consolas',monospace;
+    display:flex; height:100vh; overflow:hidden;
+  }
+  #map-panel {
+    flex:1; position:relative; overflow:hidden;
+    background:#030308;
+  }
+  #map-canvas { width:100%; height:100%; display:block; }
+  .canvas-hint {
+    position:absolute; top:8px; left:12px; font-size:11px;
+    color:var(--dim); pointer-events:none; z-index:10;
+  }
+  #conn-status {
+    position:absolute; top:8px; right:12px; font-size:10px;
+    color:var(--dim); z-index:10;
+  }
+  #conn-status.connected { color:var(--green); }
+  #conn-status.error { color:#ff4444; }
+  #loading {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    color:var(--accent); font-size:18px; z-index:10;
+  }
+  #side-panel {
+    width: 420px; min-width: 320px; background: var(--panel);
+    border-left: 1px solid var(--border); display: flex; flex-direction: column;
+  }
+  @media (max-width: 768px) {
+    body { flex-direction: column; height: 100vh; overflow: hidden; }
+    #map-panel { flex: 0 0 30vh; min-height: 150px; }
+    #side-panel { flex: 1 1 auto; width: 100%; min-width: 0; border-left: none; border-top: 1px solid var(--border); overflow-y: auto; padding-bottom: 80px; }
+    #game-output { max-height: none; min-height: 40px; }
+    #command-bar { padding: 8px 12px; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; width: 100%; box-sizing: border-box; }
+    #command-input { font-size: 16px; }
+    #send-btn { padding: 12px 20px; font-size: 14px; }
+    #room-exits .exit-btn { padding: 8px 16px; font-size: 13px; margin: 3px 4px; }
+  }
+  #status-bar {
+    padding:8px 16px; background:#08081a;
+    border-bottom:1px solid var(--border); font-size:12px;
+    display:flex; justify-content:space-between; align-items:center; flex-shrink:0;
+  }
+  #status-bar .stat { color:var(--text-dim); }
+  #status-bar .stat .val { color:var(--accent); font-weight:bold; }
+  #status-bar .moon { color:var(--accent); }
+  #room-info { padding:12px 16px; border-bottom:1px solid var(--border); flex-shrink:0; }
+  #room-name {
+    color:var(--accent); font-size:20px; font-weight:bold;
+    margin-bottom:6px; text-shadow:0 0 10px rgba(153,187,221,0.15);
+  }
+  #room-objects { margin-top:6px; font-size:12px; }
+  #room-objects .label { color:var(--text-dim); font-size:11px; margin-bottom:2px; }
+  #room-objects .obj { color:var(--blue); margin:1px 0; padding-left:16px; position:relative; }
+  #room-objects .obj::before {
+    content:'\25C6'; position:absolute; left:0; color:var(--accent); font-size:10px;
+  }
+  #room-objects .obj.fixed::before { content:'\25CB'; color:var(--text-dim); }
+  #room-exits { margin-top:8px; font-size:11px; }
+  #room-exits .label { color:var(--text-dim); margin-bottom:4px; }
+  #room-exits .exit-btn {
+    display:inline-block; margin:2px 3px; padding:3px 10px;
+    background:#14142a; border:1px solid #222240; border-radius:3px;
+    cursor:pointer; color:var(--fg); font-size:11px; transition:all 0.15s;
+  }
+  @media (max-width: 768px) {
+    #room-exits .exit-btn { padding: 8px 16px; font-size: 13px; margin: 3px 4px; }
+  }
+  #room-exits .exit-btn:hover { background:var(--accent); color:#000; border-color:var(--accent); }
+  #room-exits .exit-btn.locked { opacity:0.45; border-color:#442200; color:#886644; }
+  #game-output {
+    flex: 1; padding: 12px 16px; overflow-y: auto; font-size: 13px; line-height: 1.55; color: var(--fg);
+    min-height: 80px; max-height: 50vh;
+  }
+  @media (max-width: 768px) {
+    #game-output { max-height: 30vh; min-height: 60px; }
+  }
+  #game-output .line { margin-bottom:3px; }
+  #game-output .cmd { color:var(--accent); }
+  #game-output .cmd::before { content:'\203A '; }
+  #game-output .room-hdr { color:var(--accent); font-weight:bold; }
+  #game-output .narrative { color:#9090a0; }
+  #game-output .error { color:#ff6644; }
+  #game-output::-webkit-scrollbar { width:6px; }
+  #game-output::-webkit-scrollbar-track { background:transparent; }
+  #game-output::-webkit-scrollbar-thumb { background:#222; border-radius:3px; }
+  #command-bar {
+    padding:10px 16px; border-top:1px solid var(--border);
+    background:#040410; display:flex; gap:8px; flex-shrink:0;
+    position:sticky; bottom:0; z-index:20;
+  }
+  #command-input {
+    flex:1; background:#111122; border:1px solid #222240; color:var(--fg);
+    padding:8px 12px; font-family:inherit; font-size:13px; border-radius:4px; outline:none;
+  }
+  #command-input:focus { border-color:var(--accent); }
+  #command-input::placeholder { color:#444460; }
+  #send-btn {
+    padding:8px 18px; background:var(--accent); color:#000; border:none;
+    font-family:inherit; font-size:13px; font-weight:bold; border-radius:4px; cursor:pointer;
+  }
+  #send-btn:hover { background:#aaccff; }
+  #send-btn:disabled { background:#333; color:#666; }
+  #legend {
+    padding:6px 16px; font-size:10px; color:var(--text-dim);
+    border-top:1px solid var(--border); display:flex; flex-wrap:wrap; gap:6px; flex-shrink:0;
+  }
+  #legend .dot { display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:3px; vertical-align:middle; }
+  #restart-btn { margin-left:auto; color:#ff6644; cursor:pointer; text-decoration:underline; }
+</style>
+</head>
+<body>
+<div id="map-panel">
+  <canvas id="map-canvas"></canvas>
+  <div class="canvas-hint">Click rooms to move &bull; Scroll to zoom &bull; Drag to pan</div>
+  <div id="conn-status">connecting...</div>
+  <div id="loading">Loading map...</div>
+</div>
+<div id="side-panel">
+  <div id="status-bar">
+    <span class="stat">Time: <span class="val" id="time">19:00</span></span>
+    <span class="stat">Moves: <span class="val" id="moves">0</span></span>
+    <span class="stat moon" id="moon">&nbsp;&nbsp;&nbsp;</span>
+  </div>
+  <div id="room-info">
+    <div id="room-name">...</div>
+    <div id="room-objects"></div>
+    <div id="room-exits"></div>
+  </div>
+  <div id="game-output"></div>
+  <div id="legend">
+    <span><span class="dot" style="background:#6688dd"></span>Castle</span>
+    <span><span class="dot" style="background:#888"></span>Secret Tomb</span>
+    <span id="restart-btn">Restart</span>
+  </div>
+  <div id="command-bar">
+    <input id="command-input" placeholder="Type a command..." autocomplete="off"/>
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+<script>
+var MAP=null, currentRoomZil=null, visitedRooms=new Set(), adjacency={}, exitMap={}, busy=false;
+var playerAnim={x:0,y:0,animating:false}, animFrameId=null, pulsePhase=0;
+var scale=1.0, offsetX=0, offsetY=0, mouseDown=false, dragStartX=0, dragStartY=0, dragMoved=false;
+var descToZil={};
+
+var ROOM_W=96, ROOM_H=68, WALL=4;
+var IW=ROOM_W-2*WALL, IH=ROOM_H-2*WALL;
+var DOOR_W=22;
+
+var COMP_BORDER=['#6688dd','#888888'];
+
+// Moonmist room type colors: {floor, wall, label}
+var TYPE_COLORS={
+  bedroom:   {f:'#141418',w:'#282838',l:'#aaaabb'},
+  corridor:  {f:'#111118',w:'#202030',l:'#555570'},
+  hall:      {f:'#101418',w:'#203040',l:'#6688bb'},
+  outside:   {f:'#101810',w:'#204020',l:'#44aa44'},
+  dungeon:   {f:'#180a0a',w:'#382020',l:'#8a4444'},
+  kitchen:   {f:'#181410',w:'#332820',l:'#aa8844'},
+  study:     {f:'#181612',w:'#332820',l:'#aa8855'},
+  tower:     {f:'#101418',w:'#223038',l:'#6699bb'},
+  chapel:    {f:'#181020',w:'#282038',l:'#8866bb'},
+  room:      {f:'#141420',w:'#222230',l:'#555570'},
+  limbo:     {f:'#080808',w:'#141414',l:'#444444'},
+  bathroom:  {f:'#101218',w:'#203040',l:'#6688aa'},
+  generic:   {f:'#141420',w:'#222230',l:'#555570'}
+};
+
+var DIR_SHORT={NORTH:'n',SOUTH:'s',EAST:'e',WEST:'w',UP:'u',DOWN:'d',IN:'in',OUT:'out',NE:'ne',NW:'nw',SE:'se',SW:'sw'};
+
+var canvas=document.getElementById('map-canvas');
+var ctx=canvas.getContext('2d');
+
+function resize(){var dpr=window.devicePixelRatio||1;canvas.width=canvas.offsetWidth*dpr;canvas.height=canvas.offsetHeight*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+window.addEventListener('resize',function(){resize();draw();});
+
+function getTypeColors(name){
+  var r=MAP.rooms[name];var t=r?r.type:'generic';
+  return TYPE_COLORS[t]||TYPE_COLORS.generic;
+}
+
+function drawCorridor(e,vis,adj){
+  var p1=MAP.rooms[e.from],p2=MAP.rooms[e.to];if(!p1||!p2)return;
+  var dx=p2.px-p1.px,dy=p2.py-p1.py;
+  var adx=Math.abs(dx),ady=Math.abs(dy);
+  var c1=COMP_BORDER[(MAP.components[e.from]||0)%COMP_BORDER.length];
+  var c2=COMP_BORDER[(MAP.components[e.to]||0)%COMP_BORDER.length];
+
+  if(adx>=ady){
+    var x1=Math.min(p1.px,p2.px)+ROOM_W/2;
+    var x2=Math.max(p1.px,p2.px)-ROOM_W/2;
+    var cy=Math.round((p1.py+p2.py)/2);
+    var alpha=vis?0.5:(adj?0.25:0.08);
+
+    ctx.fillStyle='rgba(20,20,30,'+alpha+')';
+    ctx.fillRect(x1,cy-DOOR_W/2,x2-x1,DOOR_W);
+
+    ctx.fillStyle='rgba(35,35,50,'+(alpha*0.7)+')';
+    ctx.fillRect(x1,cy-DOOR_W/2-2,x2-x1,2);
+    ctx.fillRect(x1,cy+DOOR_W/2,x2-x1,2);
+
+    if(ady>5){
+      var ty=(dy>0?p1.py:p2.py);
+      var by=(dy>0?p2.py:p1.py);
+      var xmid=Math.round((p1.px+p2.px)/2);
+      ctx.fillStyle='rgba(20,20,30,'+alpha+')';
+      if(adx>ady){
+        ctx.fillRect(xmid,Math.min(ty,cy)-DOOR_W/2,DOOR_W,Math.abs(cy-ty));
+        ctx.fillStyle='rgba(35,35,50,'+(alpha*0.7)+')';
+        ctx.fillRect(xmid-2,Math.min(ty,cy)-DOOR_W/2,2,Math.abs(cy-ty));
+        ctx.fillRect(xmid+DOOR_W/2,Math.min(ty,cy)-DOOR_W/2,2,Math.abs(cy-ty));
+      }
+    }
+  } else {
+    var y1=Math.min(p1.py,p2.py)+ROOM_H/2;
+    var y2=Math.max(p1.py,p2.py)-ROOM_H/2;
+    var cx=Math.round((p1.px+p2.px)/2);
+    var alpha=vis?0.5:(adj?0.25:0.08);
+
+    ctx.fillStyle='rgba(20,20,30,'+alpha+')';
+    ctx.fillRect(cx-DOOR_W/2,y1,DOOR_W,y2-y1);
+
+    ctx.fillStyle='rgba(35,35,50,'+(alpha*0.7)+')';
+    ctx.fillRect(cx-DOOR_W/2-2,y1,2,y2-y1);
+    ctx.fillRect(cx+DOOR_W/2,y1,2,y2-y1);
+
+    if(adx>5){
+      var lx=(dx>0?p1.px:p2.px);
+      var rx=(dx>0?p2.px:p1.px);
+      var ymid=Math.round((p1.py+p2.py)/2);
+      ctx.fillStyle='rgba(20,20,30,'+alpha+')';
+      ctx.fillRect(Math.min(lx,cx)-DOOR_W/2,ymid,DOOR_W,Math.abs(cx-lx));
+    }
+  }
+}
+
+function drawDoor(x0,y0,W,H,wall,dir,tc){
+  ctx.fillStyle=tc.f;
+  switch(dir){
+    case 'NORTH': ctx.fillRect(x0+W/2-DOOR_W/2,y0,DOOR_W,wall); break;
+    case 'SOUTH': ctx.fillRect(x0+W/2-DOOR_W/2,y0+H-wall,DOOR_W,wall); break;
+    case 'EAST':  ctx.fillRect(x0+W-wall,y0+H/2-DOOR_W/2,wall,DOOR_W); break;
+    case 'WEST':  ctx.fillRect(x0,y0+H/2-DOOR_W/2,wall,DOOR_W); break;
+    case 'NE': ctx.fillRect(x0+W-wall,y0+wall,wall,DOOR_W/2+4); break;
+    case 'NW': ctx.fillRect(x0,y0+wall,wall,DOOR_W/2+4); break;
+    case 'SE': ctx.fillRect(x0+W-wall,y0+H-wall-DOOR_W/2-4,wall,DOOR_W/2+4); break;
+    case 'SW': ctx.fillRect(x0,y0+H-wall-DOOR_W/2-4,wall,DOOR_W/2+4); break;
+  }
+}
+
+function drawRoom(name,r,isCur,isVis,isAdj){
+  var x0=r.px-ROOM_W/2, y0=r.py-ROOM_H/2;
+  var ix0=x0+WALL, iy0=y0+WALL;
+  var tc=getTypeColors(name);
+  var comp=(MAP.components&&MAP.components[name])||0;
+  var compColor=COMP_BORDER[comp%COMP_BORDER.length];
+
+  var alpha=isCur?1.0:(isVis?0.85:(isAdj?0.35:0.06));
+
+  ctx.globalAlpha=alpha;
+  ctx.fillStyle=tc.f;
+  ctx.fillRect(ix0,iy0,IW,IH);
+
+  if(isVis||isCur){
+    ctx.strokeStyle='rgba(40,40,55,0.4)';
+    ctx.lineWidth=0.5;
+    for(var tx=ix0+10;tx<ix0+IW;tx+=10){ctx.beginPath();ctx.moveTo(tx,iy0);ctx.lineTo(tx,iy0+IH);ctx.stroke();}
+    for(var ty=iy0+10;ty<iy0+IH;ty+=10){ctx.beginPath();ctx.moveTo(ix0,ty);ctx.lineTo(ix0+IW,ty);ctx.stroke();}
+  }
+
+  ctx.fillStyle=tc.w;
+  ctx.fillRect(x0,y0,ROOM_W,WALL);
+  ctx.fillRect(x0,y0+ROOM_H-WALL,ROOM_W,WALL);
+  ctx.fillRect(x0,y0,WALL,ROOM_H);
+  ctx.fillRect(x0+ROOM_W-WALL,y0,WALL,ROOM_H);
+
+  var exits=exitMap[name]||{};
+  for(var dir in exits){drawDoor(x0,y0,ROOM_W,ROOM_H,WALL,dir,tc);}
+
+  if((isVis||isCur)&&(exits.UP||exits.DOWN||exits.IN||exits.OUT)){
+    var mx=r.px,my=r.py;
+    ctx.font='bold 12px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    if(exits.UP){ctx.fillStyle='#6666cc';ctx.fillText('\u2191',mx-12,iy0+8);}
+    if(exits.DOWN){ctx.fillStyle='#6666cc';ctx.fillText('\u2193',mx+12,iy0+8);}
+    if(exits.IN){ctx.fillStyle='#44aa44';ctx.fillText('\u25C8',mx-12,iy0+IH-8);}
+    if(exits.OUT){ctx.fillStyle='#44aa44';ctx.fillText('\u25C8',mx+12,iy0+IH-8);}
+  }
+
+  if((isVis||isCur)&&MAP.roomObjects&&MAP.roomObjects[name]){
+    var objs=MAP.roomObjects[name];
+    objs.forEach(function(o,i){
+      var col=i%3,row=Math.floor(i/3);
+      var ox=ix0+14+col*18,oy=iy0+14+row*14;
+      ctx.font='bold 11px monospace';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillStyle=o.t?'#ff9944':'#555570';
+      ctx.fillText(o.t?'!':'*',ox,oy);
+    });
+  }
+
+  if(isVis&&!isCur){
+    ctx.strokeStyle=compColor;
+    ctx.lineWidth=1;
+    ctx.globalAlpha=0.15;
+    ctx.strokeRect(x0+0.5,y0+0.5,ROOM_W-1,ROOM_H-1);
+  }
+
+  ctx.globalAlpha=1;
+
+  if(isCur){
+    ctx.shadowColor='#99bbdd';ctx.shadowBlur=25;
+    ctx.strokeStyle='#99bbdd';ctx.lineWidth=2.5;
+    ctx.strokeRect(x0,y0,ROOM_W,ROOM_H);
+    ctx.shadowBlur=0;
+  }
+
+  if(isCur||isVis||isAdj){
+    ctx.fillStyle=isCur?'#99bbdd':(isAdj?compColor:'#444460');
+    ctx.globalAlpha=isCur?1.0:(isVis?0.7:0.3);
+    ctx.font=(isCur?'bold ':'')+'9px monospace';
+    ctx.textAlign='center';ctx.textBaseline='top';
+    var label=r.desc;if(label.length>16)label=label.substring(0,15);
+    ctx.fillText(label,r.px,y0+ROOM_H+3);
+    ctx.globalAlpha=1;
+  }
+}
+
+function draw(){
+  if(!MAP)return;
+  var w=canvas.offsetWidth,h=canvas.offsetHeight;
+  ctx.clearRect(0,0,w,h);
+  ctx.save();ctx.translate(offsetX,offsetY);ctx.scale(scale,scale);
+
+  var gridSize=130;
+  var startX=Math.floor(-offsetX/scale/gridSize)*gridSize;
+  var startY=Math.floor(-offsetY/scale/gridSize)*gridSize;
+  var endX=startX+w/scale+gridSize;
+  var endY=startY+h/scale+gridSize;
+  ctx.fillStyle='#08080c';
+  for(var gx=startX;gx<endX;gx+=gridSize){
+    for(var gy=startY;gy<endY;gy+=gridSize){ctx.fillRect(gx-1,gy-1,2,2);}
+  }
+
+  MAP.edges.forEach(function(e){
+    var p1=MAP.rooms[e.from],p2=MAP.rooms[e.to];if(!p1||!p2)return;
+    var vis=visitedRooms.has(e.from)&&visitedRooms.has(e.to);
+    var adj=(e.from===currentRoomZil||e.to===currentRoomZil);
+    drawCorridor(e,vis,adj);
+  });
+
+  var roomOrder=Object.keys(MAP.rooms).sort(function(a,b){
+    var av=visitedRooms.has(a),bv=visitedRooms.has(b);
+    var ac=a===currentRoomZil,bc=b===currentRoomZil;
+    if(ac)return 1;if(bc)return -1;
+    if(av&&!bv)return 1;if(!av&&bv)return -1;
+    return 0;
+  });
+
+  roomOrder.forEach(function(name){
+    var r=MAP.rooms[name];
+    var isCur=name===currentRoomZil;
+    var isVis=visitedRooms.has(name);
+    var isAdj=adjacency[currentRoomZil]&&adjacency[currentRoomZil].indexOf(name)>=0;
+    drawRoom(name,r,isCur,isVis,isAdj);
+  });
+
+  if(currentRoomZil&&MAP.rooms[currentRoomZil]){
+    var r=MAP.rooms[currentRoomZil];
+    var px=playerAnim.animating?playerAnim.x:r.px;
+    var py=playerAnim.animating?playerAnim.y:r.py;
+    var pulse=0.5+0.5*Math.sin(pulsePhase);
+    ctx.shadowColor='#99bbdd';ctx.shadowBlur=12+pulse*8;
+    ctx.fillStyle='#99bbdd';
+    ctx.font='bold 20px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('@',px,py+1);
+    ctx.shadowBlur=0;
+  }
+
+  ctx.restore();
+}
+
+function pulseLoop(){
+  pulsePhase+=0.06;
+  if(!playerAnim.animating)draw();
+  requestAnimationFrame(pulseLoop);
+}
+
+function animatePlayer(fx,fy,tx,ty,dur){
+  playerAnim.animating=true;playerAnim.x=fx;playerAnim.y=fy;
+  var start=performance.now();
+  if(animFrameId)cancelAnimationFrame(animFrameId);
+  function step(now){
+    var t=Math.min((now-start)/dur,1);
+    var e=1-Math.pow(1-t,3);
+    playerAnim.x=fx+(tx-fx)*e;playerAnim.y=fy+(ty-fy)*e;
+    draw();
+    if(t<1)animFrameId=requestAnimationFrame(step);
+    else{playerAnim.animating=false;draw();}
+  }
+  animFrameId=requestAnimationFrame(step);
+}
+
+function updateRoomInfo(roomZil,roomDesc,score,moves){
+  if(roomZil)currentRoomZil=roomZil;
+  if(roomDesc)document.getElementById('room-name').textContent=roomDesc;
+  if(score!==undefined)updateTime(score,moves);
+  if(moves!==undefined)document.getElementById('moves').textContent=moves;
+  var objDiv=document.getElementById('room-objects');
+  var objs=(MAP.roomObjects&&MAP.roomObjects[currentRoomZil])||[];
+  if(objs.length>0){
+    var h='<div class="label">Items here:</div>';
+    objs.forEach(function(o){h+='<div class="obj '+(o.t?'':'fixed')+'">'+o.d+'</div>';});
+    objDiv.innerHTML=h;
+  }else objDiv.innerHTML='';
+  var ed=document.getElementById('room-exits');
+  var exits=exitMap[currentRoomZil]||{};
+  var dirs=Object.keys(exits);
+  if(dirs.length>0){
+    var h='<div class="label">Exits:</div>';
+    dirs.forEach(function(d){
+      var edge=null;
+      for(var i=0;i<MAP.edges.length;i++){
+        if(MAP.edges[i].from===currentRoomZil&&MAP.edges[i].dir===d){edge=MAP.edges[i];break;}
+      }
+      var locked=edge&&edge.conditional;
+      h+='<span class="exit-btn '+(locked?'locked':'')+'" data-dir="'+d+'">'+d+(locked?' [locked]':'')+'</span>';
+    });
+    ed.innerHTML=h;
+    ed.querySelectorAll('.exit-btn').forEach(function(el){
+      el.addEventListener('click',function(){
+        var dir=el.dataset.dir;
+        sendCommand(DIR_SHORT[dir]||dir.toLowerCase());
+      });
+    });
+  }else ed.innerHTML='<div class="label">No visible exits.</div>';
+  draw();
+}
+
+function updateTime(score,moves){
+  var hh=String(score||0).padStart(2,'0');
+  var mm=String(moves||0).padStart(2,'0');
+  document.getElementById('time').textContent=hh+':'+mm;
+  var moonEl=document.getElementById('moon');
+  var h=score||0;
+  if(h>=20||h<6){moonEl.innerHTML='\u2600';moonEl.style.color='#6688dd';}
+  else if(h>=6&&h<12){moonEl.innerHTML='\u2600';moonEl.style.color='#ddaa44';}
+  else if(h>=12&&h<18){moonEl.innerHTML='\u2601';moonEl.style.color='#888';}
+  else{moonEl.innerHTML='\u2600';moonEl.style.color='#9988aa';}
+}
+
+function addOutput(html){var d=document.getElementById('game-output');var l=document.createElement('div');l.className='line';l.innerHTML=html;d.appendChild(l);d.scrollTop=d.scrollHeight;}
+function addCommand(cmd){addOutput('<span class="cmd">'+escHtml(cmd)+'</span>');}
+function addNarrative(text){
+  if(!text)return;
+  text.split(/\n\s*\n/).forEach(function(p){
+    var t=p.trim();if(!t)return;
+    var lines=t.split('\n');
+    if(lines.length>=2&&lines[0].length<35){
+      addOutput('<span class="room-hdr">'+escHtml(lines[0])+'</span>');
+      addOutput('<span class="narrative">'+escHtml(lines.slice(1).join('\n'))+'</span>');
+    }else addOutput('<span class="narrative">'+escHtml(t)+'</span>');
+  });
+}
+function escHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function setConn(s,t){var e=document.getElementById('conn-status');e.className=s;e.textContent=t;}
+
+var USE_ELECTRON = typeof window.electronAPI !== 'undefined';
+var SESSION_ID = localStorage.getItem('moonmist_session') || '';
+
+async function ensureSession(){
+  if(USE_ELECTRON)return;
+  if(SESSION_ID){return;}
+  try{
+    var resp=await fetch('/api/session',{method:'POST'});
+    var data=await resp.json();
+    SESSION_ID=data.session_id;
+    localStorage.setItem('moonmist_session',SESSION_ID);
+  }catch(err){console.error('Failed to create session:',err);}
+}
+
+async function sendCommand(cmd){
+  if(busy)return;busy=true;document.getElementById('send-btn').disabled=true;
+  addCommand(cmd);
+  var oldRoom=currentRoomZil;
+  var oldPos=oldRoom&&MAP.rooms[oldRoom]?{x:MAP.rooms[oldRoom].px,y:MAP.rooms[oldRoom].py}:null;
+  try{
+    var data;
+    if(USE_ELECTRON){
+      data=await window.electronAPI.sendCommand(cmd);
+    }else{
+      var resp=await fetch('/api/command',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({command:cmd,session_id:SESSION_ID})});
+      data=await resp.json();
+    }
+    if(data.text)addNarrative(data.text);
+    if(!USE_ELECTRON&&data.session_id){SESSION_ID=data.session_id;localStorage.setItem('moonmist_session',SESSION_ID);}
+    var roomZil=null;
+    if(data.room){
+      if(USE_ELECTRON){roomZil=descToZil[data.room.toLowerCase()];}
+      else{roomZil=data.room_zil;}
+    }
+    data.room_zil=roomZil;
+    if(roomZil&&roomZil!==oldRoom){
+      visitedRooms.add(roomZil);
+      var np=MAP.rooms[roomZil];
+      if(oldPos&&np)animatePlayer(oldPos.x,oldPos.y,np.px,np.py,400);
+    }
+    if(roomZil){
+      var rd=MAP.rooms[roomZil]?MAP.rooms[roomZil].desc:data.room;
+      updateRoomInfo(roomZil,rd,data.score,data.moves);
+    }else if(data.score!==undefined){
+      updateTime(data.score,data.moves);
+      document.getElementById('moves').textContent=data.moves;
+    }
+    setConn('connected','connected');
+  }catch(err){addOutput('<span class="error">Error: '+escHtml(err.message)+'</span>');setConn('error','error');}
+  busy=false;document.getElementById('send-btn').disabled=false;
+}
+
+async function loadMap(){
+  try{
+    if(!USE_ELECTRON)await ensureSession();
+    var MAP_DATA;
+    if(USE_ELECTRON){
+      MAP_DATA=await window.electronAPI.getMap();
+    }else{
+      var resp=await fetch('/api/map');MAP_DATA=await resp.json();
+    }
+    MAP=MAP_DATA;
+    Object.keys(MAP.rooms).forEach(function(name){descToZil[MAP.rooms[name].desc.toLowerCase()]=name;});
+    MAP.edges.forEach(function(e){
+      if(!adjacency[e.from])adjacency[e.from]=[];
+      if(!adjacency[e.to])adjacency[e.to]=[];
+      if(adjacency[e.from].indexOf(e.to)<0)adjacency[e.from].push(e.to);
+      if(adjacency[e.to].indexOf(e.from)<0)adjacency[e.to].push(e.from);
+      if(!exitMap[e.from])exitMap[e.from]={};
+      if(!exitMap[e.from][e.dir])exitMap[e.from][e.dir]=e.to;
+    });
+    document.getElementById('loading').style.display='none';
+    currentRoomZil=MAP.startRoom||'DRIVEWAY';
+    visitedRooms.add(currentRoomZil);
+    resize();centerOnRoom(currentRoomZil);draw();
+    setConn('connected','connected');
+    pulseLoop();
+    await sendCommand('look');
+  }catch(err){document.getElementById('loading').textContent='Failed: '+err.message;setConn('error','error');}
+}
+
+function centerOnRoom(name){
+  var r=MAP.rooms[name];if(!r)return;
+  var w=canvas.offsetWidth,h=canvas.offsetHeight;
+  offsetX=w/2-r.px*scale;offsetY=h/2-r.py*scale;
+}
+
+canvas.addEventListener('click',function(e){
+  if(dragMoved){dragMoved=false;return;}
+  if(!MAP)return;
+  var rect=canvas.getBoundingClientRect();
+  var x=(e.clientX-rect.left-offsetX)/scale;
+  var y=(e.clientY-rect.top-offsetY)/scale;
+  var closest=null,cd=ROOM_W/2+5;
+  Object.keys(MAP.rooms).forEach(function(name){
+    var r=MAP.rooms[name];
+    var dx=Math.abs(r.px-x),dy=Math.abs(r.py-y);
+    if(dx<ROOM_W/2+5&&dy<ROOM_H/2+5){
+      var d=Math.sqrt(dx*dx+dy*dy);
+      if(d<cd){cd=d;closest=name;}
+    }
+  });
+  if(closest&&adjacency[currentRoomZil]&&adjacency[currentRoomZil].indexOf(closest)>=0){
+    var exits=exitMap[currentRoomZil]||{};
+    for(var d in exits){if(exits[d]===closest){sendCommand(DIR_SHORT[d]||d.toLowerCase());break;}}
+  }
+});
+canvas.addEventListener('wheel',function(e){
+  e.preventDefault();var rect=canvas.getBoundingClientRect();
+  var mx=e.clientX-rect.left,my=e.clientY-rect.top;
+  var f=e.deltaY<0?1.15:0.87;
+  offsetX=mx-(mx-offsetX)*f;offsetY=my-(my-offsetY)*f;scale*=f;draw();
+});
+canvas.addEventListener('mousedown',function(e){mouseDown=true;dragMoved=false;dragStartX=e.clientX-offsetX;dragStartY=e.clientY-offsetY;});
+canvas.addEventListener('mousemove',function(e){if(mouseDown){offsetX=e.clientX-dragStartX;offsetY=e.clientY-dragStartY;dragMoved=true;draw();}});
+canvas.addEventListener('mouseup',function(){mouseDown=false;});
+canvas.addEventListener('mouseleave',function(){mouseDown=false;});
+document.addEventListener('keydown',function(e){
+  if(e.target.id==='command-input'||busy)return;
+  var m={'n':'n','s':'s','e':'e','w':'w','u':'u','d':'d','ArrowUp':'n','ArrowDown':'s','ArrowLeft':'w','ArrowRight':'e'};
+  if(m[e.key]){e.preventDefault();sendCommand(m[e.key]);}
+});
+document.getElementById('send-btn').addEventListener('click',function(){
+  var inp=document.getElementById('command-input');
+  if(inp.value.trim()){sendCommand(inp.value);inp.value='';}
+});
+document.getElementById('command-input').addEventListener('keydown',function(e){
+  if(e.key==='Enter'){var inp=document.getElementById('command-input');if(inp.value.trim()){sendCommand(inp.value);inp.value='';}}
+});
+document.getElementById('restart-btn').addEventListener('click',async function(){
+  if(busy)return;busy=true;
+  try{
+    if(USE_ELECTRON){await window.electronAPI.restartGame();}
+    else{
+      var resp=await fetch('/api/restart',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:SESSION_ID})});
+      var rdata=await resp.json();
+      if(rdata.session_id)SESSION_ID=rdata.session_id;
+    }
+    visitedRooms.clear();
+    document.getElementById('game-output').innerHTML='';
+    addOutput('<span class="room-hdr">--- Game Restarted ---</span>');
+    currentRoomZil=MAP.startRoom;visitedRooms.add(currentRoomZil);
+    centerOnRoom(currentRoomZil);await sendCommand('look');
+  }catch(err){addOutput('<span class="error">Restart failed</span>');}
+  busy=false;
+});
+resize();loadMap();
+</script>
+</body>
+</html>

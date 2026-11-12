@@ -1,0 +1,2499 @@
+{
+  "rooms": {
+    "DRIVEWAY": {
+      "gx": 0,
+      "gy": -3,
+      "px": 0,
+      "py": -390,
+      "desc": "driveway",
+      "type": "outside"
+    },
+    "COURTYARD": {
+      "gx": 0,
+      "gy": -2,
+      "px": 0,
+      "py": -260,
+      "desc": "courtyard",
+      "type": "outside"
+    },
+    "MAZE": {
+      "gx": 1,
+      "gy": -2,
+      "px": 130,
+      "py": -260,
+      "desc": "hedge maze",
+      "type": "outside"
+    },
+    "GARDEN": {
+      "gx": 1,
+      "gy": -3,
+      "px": 130,
+      "py": -390,
+      "desc": "garden",
+      "type": "outside"
+    },
+    "FOYER": {
+      "gx": 0,
+      "gy": 2.75,
+      "px": 0,
+      "py": 357,
+      "desc": "foyer",
+      "type": "generic"
+    },
+    "DRAWING-ROOM": {
+      "gx": 1,
+      "gy": 3.95,
+      "px": 130,
+      "py": 513,
+      "desc": "drawing room",
+      "type": "room"
+    },
+    "GREAT-HALL": {
+      "gx": 0,
+      "gy": 3.75,
+      "px": 0,
+      "py": 487,
+      "desc": "new great hall",
+      "type": "hall"
+    },
+    "SITTING-ROOM": {
+      "gx": 2,
+      "gy": 4.5,
+      "px": 260,
+      "py": 585,
+      "desc": "sitting room",
+      "type": "room"
+    },
+    "CORR-1": {
+      "gx": 2,
+      "gy": 2.6,
+      "px": 260,
+      "py": 338,
+      "desc": "ground-floor corridor",
+      "type": "corridor"
+    },
+    "DINING-ROOM": {
+      "gx": 2,
+      "gy": 4.0,
+      "px": 260,
+      "py": 520,
+      "desc": "dining room",
+      "type": "room"
+    },
+    "BACKSTAIRS": {
+      "gx": 3,
+      "gy": -0.5,
+      "px": 390,
+      "py": -65,
+      "desc": "backstairs",
+      "type": "generic"
+    },
+    "KITCHEN": {
+      "gx": 2,
+      "gy": 3.4,
+      "px": 260,
+      "py": 442,
+      "desc": "kitchen",
+      "type": "kitchen"
+    },
+    "GALLERY": {
+      "gx": 0,
+      "gy": 5.5,
+      "px": 0,
+      "py": 715,
+      "desc": "gallery",
+      "type": "generic"
+    },
+    "YOUR-ROOM": {
+      "gx": 3,
+      "gy": 2.6,
+      "px": 390,
+      "py": 338,
+      "desc": "your bedroom",
+      "type": "bedroom"
+    },
+    "YOUR-BATHROOM": {
+      "gx": 3,
+      "gy": 3.85,
+      "px": 390,
+      "py": 500,
+      "desc": "your bathroom",
+      "type": "room"
+    },
+    "EAST-HALL": {
+      "gx": 1,
+      "gy": 5.7,
+      "px": 130,
+      "py": 741,
+      "desc": "east hall",
+      "type": "hall"
+    },
+    "IRIS-ROOM": {
+      "gx": 3,
+      "gy": 3.25,
+      "px": 390,
+      "py": 422,
+      "desc": "Iris's bedroom",
+      "type": "bedroom"
+    },
+    "WENDISH-ROOM": {
+      "gx": 0,
+      "gy": 7.05,
+      "px": 0,
+      "py": 917,
+      "desc": "Wendish's bedroom",
+      "type": "bedroom"
+    },
+    "VIVIEN-ROOM": {
+      "gx": 3,
+      "gy": 1,
+      "px": 390,
+      "py": 130,
+      "desc": "Vivien's bedroom",
+      "type": "bedroom"
+    },
+    "WEST-HALL": {
+      "gx": 4,
+      "gy": -1,
+      "px": 520,
+      "py": -130,
+      "desc": "west hall",
+      "type": "hall"
+    },
+    "IAN-ROOM": {
+      "gx": 3,
+      "gy": -1,
+      "px": 390,
+      "py": -130,
+      "desc": "Ian's bedroom",
+      "type": "bedroom"
+    },
+    "HYDE-ROOM": {
+      "gx": 4,
+      "gy": -0.4,
+      "px": 520,
+      "py": -52,
+      "desc": "Hyde's bedroom",
+      "type": "bedroom"
+    },
+    "OLD-GREAT-HALL": {
+      "gx": 0,
+      "gy": -1,
+      "px": 0,
+      "py": -130,
+      "desc": "old great hall",
+      "type": "hall"
+    },
+    "JUNCTION": {
+      "gx": 1,
+      "gy": 1.55,
+      "px": 130,
+      "py": 201,
+      "desc": "junction",
+      "type": "corridor"
+    },
+    "BASEMENT": {
+      "gx": 1,
+      "gy": 3.4,
+      "px": 130,
+      "py": 442,
+      "desc": "basement",
+      "type": "dungeon"
+    },
+    "CRYPT": {
+      "gx": 1.4,
+      "gy": 4.55,
+      "px": 182,
+      "py": 592,
+      "desc": "secret crypt",
+      "type": "dungeon"
+    },
+    "DUNGEON": {
+      "gx": 0,
+      "gy": 4.3,
+      "px": 0,
+      "py": 559,
+      "desc": "dungeon",
+      "type": "dungeon"
+    },
+    "TOMB": {
+      "gx": 0,
+      "gy": 0,
+      "px": 0,
+      "py": 0,
+      "desc": "secret tomb",
+      "type": "dungeon"
+    },
+    "LOVER-PATH": {
+      "gx": 0,
+      "gy": 6.0,
+      "px": 0,
+      "py": 780,
+      "desc": "path",
+      "type": "outside"
+    },
+    "LIMBO": {
+      "gx": 0,
+      "gy": 6.5,
+      "px": 0,
+      "py": 845,
+      "desc": "limbo",
+      "type": "limbo"
+    },
+    "CORR-2": {
+      "gx": 0,
+      "gy": 0,
+      "px": 0,
+      "py": 0,
+      "desc": "first-floor corridor",
+      "type": "corridor"
+    },
+    "JACK-ROOM": {
+      "gx": -1,
+      "gy": 0,
+      "px": -130,
+      "py": 0,
+      "desc": "master bedroom",
+      "type": "bedroom"
+    },
+    "STUDY": {
+      "gx": -1,
+      "gy": -1,
+      "px": -130,
+      "py": -130,
+      "desc": "study",
+      "type": "study"
+    },
+    "LIBRARY": {
+      "gx": 1,
+      "gy": -1,
+      "px": 130,
+      "py": -130,
+      "desc": "library",
+      "type": "study"
+    },
+    "OFFICE": {
+      "gx": 1,
+      "gy": 0,
+      "px": 130,
+      "py": 0,
+      "desc": "office",
+      "type": "study"
+    },
+    "TAMARA-ROOM": {
+      "gx": 1,
+      "gy": 1,
+      "px": 130,
+      "py": 130,
+      "desc": "Tamara's bedroom",
+      "type": "bedroom"
+    },
+    "CORR-3": {
+      "gx": 0,
+      "gy": 1,
+      "px": 0,
+      "py": 130,
+      "desc": "second-floor corridor",
+      "type": "corridor"
+    },
+    "LUMBER-ROOM": {
+      "gx": 1,
+      "gy": 2.75,
+      "px": 130,
+      "py": 357,
+      "desc": "lumber room",
+      "type": "room"
+    },
+    "CHAPEL": {
+      "gx": 0,
+      "gy": 2.15,
+      "px": 0,
+      "py": 280,
+      "desc": "chapel",
+      "type": "chapel"
+    },
+    "GAME-ROOM": {
+      "gx": 0,
+      "gy": 1.65,
+      "px": 0,
+      "py": 214,
+      "desc": "game room",
+      "type": "room"
+    },
+    "DECK": {
+      "gx": 1,
+      "gy": 2.2,
+      "px": 130,
+      "py": 286,
+      "desc": "fighting deck",
+      "type": "tower"
+    },
+    "SECRET-LANDING-JACK": {
+      "gx": -2,
+      "gy": 1,
+      "px": -260,
+      "py": 130,
+      "desc": "Jack's landing",
+      "type": "corridor"
+    },
+    "PASSAGE-1": {
+      "gx": -1,
+      "gy": 1,
+      "px": -130,
+      "py": 130,
+      "desc": "tower passage",
+      "type": "corridor"
+    },
+    "SECRET-LANDING-TAM": {
+      "gx": 2,
+      "gy": 2,
+      "px": 260,
+      "py": 260,
+      "desc": "Tamara's landing",
+      "type": "corridor"
+    },
+    "SECRET-VIVIEN-PASSAGE": {
+      "gx": 3,
+      "gy": 2,
+      "px": 390,
+      "py": 260,
+      "desc": "Vivien's entrance",
+      "type": "corridor"
+    },
+    "DINING-PASSAGE": {
+      "gx": 2,
+      "gy": -1.4,
+      "px": 260,
+      "py": -182,
+      "desc": "dining passage",
+      "type": "corridor"
+    },
+    "SECRET-LANDING-LIB": {
+      "gx": 2,
+      "gy": -2,
+      "px": 260,
+      "py": -260,
+      "desc": "library landing",
+      "type": "corridor"
+    },
+    "SECRET-IAN-PASSAGE": {
+      "gx": 3,
+      "gy": -2,
+      "px": 390,
+      "py": -260,
+      "desc": "Ian's entrance",
+      "type": "corridor"
+    },
+    "SITTING-PASSAGE": {
+      "gx": 0,
+      "gy": 4.9,
+      "px": 0,
+      "py": 637,
+      "desc": "sitting passage",
+      "type": "corridor"
+    },
+    "YOUR-CLOSET": {
+      "gx": 4,
+      "gy": 2,
+      "px": 520,
+      "py": 260,
+      "desc": "your entrance",
+      "type": "corridor"
+    },
+    "IRIS-CLOSET": {
+      "gx": 4,
+      "gy": 1,
+      "px": 520,
+      "py": 130,
+      "desc": "Iris's entrance",
+      "type": "corridor"
+    },
+    "WENDISH-CORNER": {
+      "gx": 6,
+      "gy": -2,
+      "px": 780,
+      "py": -260,
+      "desc": "Wendish's entrance",
+      "type": "corridor"
+    },
+    "MIDPOINT": {
+      "gx": 5,
+      "gy": -2,
+      "px": 650,
+      "py": -260,
+      "desc": "midpoint",
+      "type": "corridor"
+    },
+    "DRAWING-CLOSET": {
+      "gx": 1,
+      "gy": 5.1,
+      "px": 130,
+      "py": 663,
+      "desc": "drawing-room entrance",
+      "type": "corridor"
+    },
+    "GALLERY-CORNER": {
+      "gx": 5,
+      "gy": -1,
+      "px": 650,
+      "py": -130,
+      "desc": "dead end",
+      "type": "corridor"
+    },
+    "HYDE-CLOSET": {
+      "gx": 4,
+      "gy": -2,
+      "px": 520,
+      "py": -260,
+      "desc": "Hyde's entrance",
+      "type": "corridor"
+    }
+  },
+  "edges": [
+    {
+      "from": "DRIVEWAY",
+      "to": "COURTYARD",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "DRIVEWAY",
+      "to": "COURTYARD",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "COURTYARD",
+      "to": "DRIVEWAY",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "COURTYARD",
+      "to": "FOYER",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "COURTYARD",
+      "to": "MAZE",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "COURTYARD",
+      "to": "OLD-GREAT-HALL",
+      "dir": "SW",
+      "conditional": true
+    },
+    {
+      "from": "COURTYARD",
+      "to": "FOYER",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "COURTYARD",
+      "to": "DRIVEWAY",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "NE",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "NW",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "SE",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "SW",
+      "conditional": true
+    },
+    {
+      "from": "MAZE",
+      "to": "GARDEN",
+      "dir": "IN",
+      "conditional": false
+    },
+    {
+      "from": "MAZE",
+      "to": "COURTYARD",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "NE",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "NW",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "SE",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "SW",
+      "conditional": false
+    },
+    {
+      "from": "GARDEN",
+      "to": "MAZE",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "FOYER",
+      "to": "COURTYARD",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "FOYER",
+      "to": "GREAT-HALL",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "FOYER",
+      "to": "DRAWING-ROOM",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "FOYER",
+      "to": "DRAWING-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "FOYER",
+      "to": "COURTYARD",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "DRAWING-ROOM",
+      "to": "FOYER",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "DRAWING-ROOM",
+      "to": "DRAWING-CLOSET",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "DRAWING-ROOM",
+      "to": "GREAT-HALL",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "DRAWING-ROOM",
+      "to": "FOYER",
+      "dir": "NW",
+      "conditional": true
+    },
+    {
+      "from": "DRAWING-ROOM",
+      "to": "GREAT-HALL",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "DRAWING-ROOM",
+      "to": "FOYER",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "GREAT-HALL",
+      "to": "FOYER",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "GREAT-HALL",
+      "to": "GALLERY",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "GREAT-HALL",
+      "to": "DRAWING-ROOM",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "GREAT-HALL",
+      "to": "CORR-1",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "GREAT-HALL",
+      "to": "SITTING-ROOM",
+      "dir": "SW",
+      "conditional": true
+    },
+    {
+      "from": "GREAT-HALL",
+      "to": "GALLERY",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "GREAT-HALL",
+      "to": "DRAWING-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "GREAT-HALL",
+      "to": "FOYER",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "SITTING-ROOM",
+      "to": "CORR-1",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "SITTING-ROOM",
+      "to": "GREAT-HALL",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "SITTING-ROOM",
+      "to": "SITTING-PASSAGE",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "SITTING-ROOM",
+      "to": "SITTING-PASSAGE",
+      "dir": "DOWN",
+      "conditional": true
+    },
+    {
+      "from": "SITTING-ROOM",
+      "to": "SITTING-PASSAGE",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "SITTING-ROOM",
+      "to": "CORR-1",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "CORR-1",
+      "to": "DINING-ROOM",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "CORR-1",
+      "to": "SITTING-ROOM",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "CORR-1",
+      "to": "GREAT-HALL",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "CORR-1",
+      "to": "JUNCTION",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "CORR-1",
+      "to": "GREAT-HALL",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "DINING-ROOM",
+      "to": "CORR-1",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "DINING-ROOM",
+      "to": "BACKSTAIRS",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "DINING-ROOM",
+      "to": "BACKSTAIRS",
+      "dir": "IN",
+      "conditional": false
+    },
+    {
+      "from": "DINING-ROOM",
+      "to": "CORR-1",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "BACKSTAIRS",
+      "to": "DINING-ROOM",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "BACKSTAIRS",
+      "to": "DINING-PASSAGE",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "BACKSTAIRS",
+      "to": "KITCHEN",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "BACKSTAIRS",
+      "to": "DINING-PASSAGE",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "BACKSTAIRS",
+      "to": "DINING-ROOM",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "KITCHEN",
+      "to": "BASEMENT",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "KITCHEN",
+      "to": "BACKSTAIRS",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "KITCHEN",
+      "to": "BASEMENT",
+      "dir": "IN",
+      "conditional": false
+    },
+    {
+      "from": "KITCHEN",
+      "to": "BACKSTAIRS",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "GALLERY",
+      "to": "GREAT-HALL",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "GALLERY",
+      "to": "YOUR-ROOM",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "GALLERY",
+      "to": "VIVIEN-ROOM",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "GALLERY",
+      "to": "EAST-HALL",
+      "dir": "NE",
+      "conditional": false
+    },
+    {
+      "from": "GALLERY",
+      "to": "WEST-HALL",
+      "dir": "NW",
+      "conditional": false
+    },
+    {
+      "from": "GALLERY",
+      "to": "GREAT-HALL",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "GALLERY",
+      "to": "YOUR-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "GALLERY",
+      "to": "GREAT-HALL",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "YOUR-ROOM",
+      "to": "YOUR-BATHROOM",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "YOUR-ROOM",
+      "to": "YOUR-CLOSET",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "YOUR-ROOM",
+      "to": "GALLERY",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "YOUR-ROOM",
+      "to": "YOUR-CLOSET",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "YOUR-ROOM",
+      "to": "GALLERY",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "YOUR-BATHROOM",
+      "to": "YOUR-ROOM",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "YOUR-BATHROOM",
+      "to": "YOUR-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "EAST-HALL",
+      "to": "GALLERY",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "EAST-HALL",
+      "to": "IRIS-ROOM",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "EAST-HALL",
+      "to": "WENDISH-ROOM",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "EAST-HALL",
+      "to": "GALLERY",
+      "dir": "SW",
+      "conditional": false
+    },
+    {
+      "from": "EAST-HALL",
+      "to": "GALLERY",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "IRIS-ROOM",
+      "to": "IRIS-CLOSET",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "IRIS-ROOM",
+      "to": "EAST-HALL",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "IRIS-ROOM",
+      "to": "IRIS-CLOSET",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "IRIS-ROOM",
+      "to": "EAST-HALL",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "WENDISH-ROOM",
+      "to": "WENDISH-CORNER",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "WENDISH-ROOM",
+      "to": "EAST-HALL",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "WENDISH-ROOM",
+      "to": "WENDISH-CORNER",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "WENDISH-ROOM",
+      "to": "EAST-HALL",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "VIVIEN-ROOM",
+      "to": "SECRET-VIVIEN-PASSAGE",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "VIVIEN-ROOM",
+      "to": "GALLERY",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "VIVIEN-ROOM",
+      "to": "SECRET-VIVIEN-PASSAGE",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "VIVIEN-ROOM",
+      "to": "GALLERY",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "WEST-HALL",
+      "to": "GALLERY",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "WEST-HALL",
+      "to": "HYDE-ROOM",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "WEST-HALL",
+      "to": "IAN-ROOM",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "WEST-HALL",
+      "to": "GALLERY",
+      "dir": "SE",
+      "conditional": false
+    },
+    {
+      "from": "WEST-HALL",
+      "to": "GALLERY",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "IAN-ROOM",
+      "to": "SECRET-IAN-PASSAGE",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "IAN-ROOM",
+      "to": "WEST-HALL",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "IAN-ROOM",
+      "to": "SECRET-IAN-PASSAGE",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "IAN-ROOM",
+      "to": "WEST-HALL",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "HYDE-ROOM",
+      "to": "HYDE-CLOSET",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "HYDE-ROOM",
+      "to": "WEST-HALL",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "HYDE-ROOM",
+      "to": "HYDE-CLOSET",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "HYDE-ROOM",
+      "to": "WEST-HALL",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "OLD-GREAT-HALL",
+      "to": "COURTYARD",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "OLD-GREAT-HALL",
+      "to": "JUNCTION",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "OLD-GREAT-HALL",
+      "to": "CORR-2",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "OLD-GREAT-HALL",
+      "to": "COURTYARD",
+      "dir": "NE",
+      "conditional": false
+    },
+    {
+      "from": "OLD-GREAT-HALL",
+      "to": "CORR-2",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "OLD-GREAT-HALL",
+      "to": "JUNCTION",
+      "dir": "IN",
+      "conditional": false
+    },
+    {
+      "from": "OLD-GREAT-HALL",
+      "to": "COURTYARD",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "JUNCTION",
+      "to": "BASEMENT",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "JUNCTION",
+      "to": "CORR-1",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "JUNCTION",
+      "to": "OLD-GREAT-HALL",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "JUNCTION",
+      "to": "BASEMENT",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "JUNCTION",
+      "to": "CORR-1",
+      "dir": "IN",
+      "conditional": false
+    },
+    {
+      "from": "JUNCTION",
+      "to": "OLD-GREAT-HALL",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "BASEMENT",
+      "to": "JUNCTION",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "BASEMENT",
+      "to": "KITCHEN",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "BASEMENT",
+      "to": "DUNGEON",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "BASEMENT",
+      "to": "JUNCTION",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "CRYPT",
+      "to": "BASEMENT",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "DUNGEON",
+      "to": "LOVER-PATH",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "DUNGEON",
+      "to": "BASEMENT",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "DUNGEON",
+      "to": "LOVER-PATH",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "DUNGEON",
+      "to": "LOVER-PATH",
+      "dir": "NW",
+      "conditional": true
+    },
+    {
+      "from": "DUNGEON",
+      "to": "BASEMENT",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "LOVER-PATH",
+      "to": "DUNGEON",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "LOVER-PATH",
+      "to": "DUNGEON",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "LOVER-PATH",
+      "to": "DUNGEON",
+      "dir": "SE",
+      "conditional": true
+    },
+    {
+      "from": "LOVER-PATH",
+      "to": "DUNGEON",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "LIMBO",
+      "to": "LOVER-PATH",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "CORR-2",
+      "to": "OLD-GREAT-HALL",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "CORR-2",
+      "to": "CORR-3",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "CORR-2",
+      "to": "OFFICE",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "CORR-2",
+      "to": "JACK-ROOM",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "CORR-2",
+      "to": "LIBRARY",
+      "dir": "NE",
+      "conditional": true
+    },
+    {
+      "from": "CORR-2",
+      "to": "STUDY",
+      "dir": "NW",
+      "conditional": true
+    },
+    {
+      "from": "CORR-2",
+      "to": "TAMARA-ROOM",
+      "dir": "SE",
+      "conditional": true
+    },
+    {
+      "from": "CORR-2",
+      "to": "CORR-3",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "CORR-2",
+      "to": "OLD-GREAT-HALL",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "CORR-2",
+      "to": "OLD-GREAT-HALL",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "JACK-ROOM",
+      "to": "CORR-2",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "JACK-ROOM",
+      "to": "SECRET-LANDING-JACK",
+      "dir": "SW",
+      "conditional": true
+    },
+    {
+      "from": "JACK-ROOM",
+      "to": "SECRET-LANDING-JACK",
+      "dir": "DOWN",
+      "conditional": true
+    },
+    {
+      "from": "JACK-ROOM",
+      "to": "SECRET-LANDING-JACK",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "JACK-ROOM",
+      "to": "CORR-2",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "STUDY",
+      "to": "CORR-2",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "STUDY",
+      "to": "CORR-2",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "STUDY",
+      "to": "CORR-2",
+      "dir": "SE",
+      "conditional": true
+    },
+    {
+      "from": "STUDY",
+      "to": "CORR-2",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "LIBRARY",
+      "to": "CORR-2",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "LIBRARY",
+      "to": "CORR-2",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "LIBRARY",
+      "to": "SECRET-LANDING-LIB",
+      "dir": "NE",
+      "conditional": true
+    },
+    {
+      "from": "LIBRARY",
+      "to": "CORR-2",
+      "dir": "SW",
+      "conditional": true
+    },
+    {
+      "from": "LIBRARY",
+      "to": "SECRET-LANDING-LIB",
+      "dir": "DOWN",
+      "conditional": true
+    },
+    {
+      "from": "LIBRARY",
+      "to": "SECRET-LANDING-LIB",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "LIBRARY",
+      "to": "CORR-2",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "OFFICE",
+      "to": "CORR-2",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "OFFICE",
+      "to": "CORR-2",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "TAMARA-ROOM",
+      "to": "CORR-2",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "TAMARA-ROOM",
+      "to": "CORR-2",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "TAMARA-ROOM",
+      "to": "CORR-2",
+      "dir": "NW",
+      "conditional": true
+    },
+    {
+      "from": "TAMARA-ROOM",
+      "to": "SECRET-LANDING-TAM",
+      "dir": "SE",
+      "conditional": true
+    },
+    {
+      "from": "TAMARA-ROOM",
+      "to": "SECRET-LANDING-TAM",
+      "dir": "DOWN",
+      "conditional": true
+    },
+    {
+      "from": "TAMARA-ROOM",
+      "to": "SECRET-LANDING-TAM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "TAMARA-ROOM",
+      "to": "CORR-2",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "CORR-3",
+      "to": "GAME-ROOM",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "CORR-3",
+      "to": "CHAPEL",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "CORR-3",
+      "to": "DECK",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "CORR-3",
+      "to": "CORR-2",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "CORR-3",
+      "to": "LUMBER-ROOM",
+      "dir": "SE",
+      "conditional": true
+    },
+    {
+      "from": "CORR-3",
+      "to": "DECK",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "CORR-3",
+      "to": "CORR-2",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "CORR-3",
+      "to": "CORR-2",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "LUMBER-ROOM",
+      "to": "CORR-3",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "LUMBER-ROOM",
+      "to": "CORR-3",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "LUMBER-ROOM",
+      "to": "CORR-3",
+      "dir": "NW",
+      "conditional": true
+    },
+    {
+      "from": "LUMBER-ROOM",
+      "to": "CORR-3",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "CHAPEL",
+      "to": "CORR-3",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "CHAPEL",
+      "to": "CORR-3",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "GAME-ROOM",
+      "to": "CORR-3",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "GAME-ROOM",
+      "to": "CORR-3",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "DECK",
+      "to": "CORR-3",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "DECK",
+      "to": "CORR-3",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "DECK",
+      "to": "CORR-3",
+      "dir": "IN",
+      "conditional": false
+    },
+    {
+      "from": "DECK",
+      "to": "CORR-3",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-JACK",
+      "to": "JACK-ROOM",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-JACK",
+      "to": "PASSAGE-1",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-JACK",
+      "to": "JACK-ROOM",
+      "dir": "NE",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-JACK",
+      "to": "PASSAGE-1",
+      "dir": "SE",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-JACK",
+      "to": "PASSAGE-1",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-JACK",
+      "to": "JACK-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-JACK",
+      "to": "JACK-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "PASSAGE-1",
+      "to": "SITTING-PASSAGE",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "PASSAGE-1",
+      "to": "SECRET-LANDING-JACK",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "PASSAGE-1",
+      "to": "SECRET-LANDING-JACK",
+      "dir": "SW",
+      "conditional": false
+    },
+    {
+      "from": "PASSAGE-1",
+      "to": "SECRET-LANDING-TAM",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "PASSAGE-1",
+      "to": "SITTING-PASSAGE",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "PASSAGE-1",
+      "to": "SECRET-LANDING-TAM",
+      "dir": "IN",
+      "conditional": false
+    },
+    {
+      "from": "PASSAGE-1",
+      "to": "SECRET-LANDING-JACK",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-TAM",
+      "to": "SECRET-LANDING-LIB",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-TAM",
+      "to": "SECRET-VIVIEN-PASSAGE",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-TAM",
+      "to": "TAMARA-ROOM",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-TAM",
+      "to": "SECRET-LANDING-LIB",
+      "dir": "NE",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-TAM",
+      "to": "TAMARA-ROOM",
+      "dir": "NW",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-TAM",
+      "to": "PASSAGE-1",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-TAM",
+      "to": "TAMARA-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-TAM",
+      "to": "TAMARA-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-VIVIEN-PASSAGE",
+      "to": "VIVIEN-ROOM",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-VIVIEN-PASSAGE",
+      "to": "YOUR-CLOSET",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-VIVIEN-PASSAGE",
+      "to": "SECRET-LANDING-TAM",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-VIVIEN-PASSAGE",
+      "to": "VIVIEN-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-VIVIEN-PASSAGE",
+      "to": "VIVIEN-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "DINING-PASSAGE",
+      "to": "BACKSTAIRS",
+      "dir": "EAST",
+      "conditional": true
+    },
+    {
+      "from": "DINING-PASSAGE",
+      "to": "SECRET-LANDING-LIB",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "DINING-PASSAGE",
+      "to": "BACKSTAIRS",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "DINING-PASSAGE",
+      "to": "BACKSTAIRS",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-LIB",
+      "to": "SECRET-LANDING-TAM",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-LIB",
+      "to": "SECRET-IAN-PASSAGE",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-LIB",
+      "to": "LIBRARY",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-LIB",
+      "to": "SECRET-LANDING-TAM",
+      "dir": "SE",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-LIB",
+      "to": "LIBRARY",
+      "dir": "SW",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-LIB",
+      "to": "DINING-PASSAGE",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-LANDING-LIB",
+      "to": "LIBRARY",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-LANDING-LIB",
+      "to": "LIBRARY",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-IAN-PASSAGE",
+      "to": "IAN-ROOM",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-IAN-PASSAGE",
+      "to": "HYDE-CLOSET",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-IAN-PASSAGE",
+      "to": "SECRET-LANDING-LIB",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "SECRET-IAN-PASSAGE",
+      "to": "IAN-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "SECRET-IAN-PASSAGE",
+      "to": "IAN-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "SITTING-PASSAGE",
+      "to": "PASSAGE-1",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "SITTING-PASSAGE",
+      "to": "PASSAGE-1",
+      "dir": "IN",
+      "conditional": false
+    },
+    {
+      "from": "SITTING-PASSAGE",
+      "to": "PASSAGE-1",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "YOUR-CLOSET",
+      "to": "IRIS-CLOSET",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "YOUR-CLOSET",
+      "to": "SECRET-VIVIEN-PASSAGE",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "YOUR-CLOSET",
+      "to": "YOUR-ROOM",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "YOUR-CLOSET",
+      "to": "DRAWING-CLOSET",
+      "dir": "DOWN",
+      "conditional": false
+    },
+    {
+      "from": "YOUR-CLOSET",
+      "to": "YOUR-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "YOUR-CLOSET",
+      "to": "YOUR-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "IRIS-CLOSET",
+      "to": "WENDISH-CORNER",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "IRIS-CLOSET",
+      "to": "YOUR-CLOSET",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "IRIS-CLOSET",
+      "to": "IRIS-ROOM",
+      "dir": "WEST",
+      "conditional": true
+    },
+    {
+      "from": "IRIS-CLOSET",
+      "to": "IRIS-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "IRIS-CLOSET",
+      "to": "IRIS-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "WENDISH-CORNER",
+      "to": "WENDISH-ROOM",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "WENDISH-CORNER",
+      "to": "IRIS-CLOSET",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "WENDISH-CORNER",
+      "to": "MIDPOINT",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "WENDISH-CORNER",
+      "to": "WENDISH-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "WENDISH-CORNER",
+      "to": "WENDISH-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "MIDPOINT",
+      "to": "GALLERY-CORNER",
+      "dir": "SOUTH",
+      "conditional": false
+    },
+    {
+      "from": "MIDPOINT",
+      "to": "WENDISH-CORNER",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "MIDPOINT",
+      "to": "HYDE-CLOSET",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "MIDPOINT",
+      "to": "WENDISH-CORNER",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "DRAWING-CLOSET",
+      "to": "DRAWING-ROOM",
+      "dir": "NORTH",
+      "conditional": true
+    },
+    {
+      "from": "DRAWING-CLOSET",
+      "to": "YOUR-CLOSET",
+      "dir": "UP",
+      "conditional": false
+    },
+    {
+      "from": "DRAWING-CLOSET",
+      "to": "DRAWING-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "DRAWING-CLOSET",
+      "to": "DRAWING-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    },
+    {
+      "from": "GALLERY-CORNER",
+      "to": "MIDPOINT",
+      "dir": "NORTH",
+      "conditional": false
+    },
+    {
+      "from": "GALLERY-CORNER",
+      "to": "MIDPOINT",
+      "dir": "OUT",
+      "conditional": false
+    },
+    {
+      "from": "HYDE-CLOSET",
+      "to": "HYDE-ROOM",
+      "dir": "SOUTH",
+      "conditional": true
+    },
+    {
+      "from": "HYDE-CLOSET",
+      "to": "MIDPOINT",
+      "dir": "EAST",
+      "conditional": false
+    },
+    {
+      "from": "HYDE-CLOSET",
+      "to": "SECRET-IAN-PASSAGE",
+      "dir": "WEST",
+      "conditional": false
+    },
+    {
+      "from": "HYDE-CLOSET",
+      "to": "HYDE-ROOM",
+      "dir": "IN",
+      "conditional": true
+    },
+    {
+      "from": "HYDE-CLOSET",
+      "to": "HYDE-ROOM",
+      "dir": "OUT",
+      "conditional": true
+    }
+  ],
+  "components": {
+    "DRIVEWAY": 0,
+    "COURTYARD": 0,
+    "MAZE": 0,
+    "GARDEN": 0,
+    "FOYER": 0,
+    "DRAWING-ROOM": 0,
+    "GREAT-HALL": 0,
+    "SITTING-ROOM": 0,
+    "CORR-1": 0,
+    "DINING-ROOM": 0,
+    "BACKSTAIRS": 0,
+    "KITCHEN": 0,
+    "GALLERY": 0,
+    "YOUR-ROOM": 0,
+    "YOUR-BATHROOM": 0,
+    "EAST-HALL": 0,
+    "IRIS-ROOM": 0,
+    "WENDISH-ROOM": 0,
+    "VIVIEN-ROOM": 0,
+    "WEST-HALL": 0,
+    "IAN-ROOM": 0,
+    "HYDE-ROOM": 0,
+    "OLD-GREAT-HALL": 0,
+    "JUNCTION": 0,
+    "BASEMENT": 0,
+    "CRYPT": 0,
+    "DUNGEON": 0,
+    "TOMB": 1,
+    "LOVER-PATH": 0,
+    "LIMBO": 0,
+    "CORR-2": 0,
+    "JACK-ROOM": 0,
+    "STUDY": 0,
+    "LIBRARY": 0,
+    "OFFICE": 0,
+    "TAMARA-ROOM": 0,
+    "CORR-3": 0,
+    "LUMBER-ROOM": 0,
+    "CHAPEL": 0,
+    "GAME-ROOM": 0,
+    "DECK": 0,
+    "SECRET-LANDING-JACK": 0,
+    "PASSAGE-1": 0,
+    "SECRET-LANDING-TAM": 0,
+    "SECRET-VIVIEN-PASSAGE": 0,
+    "DINING-PASSAGE": 0,
+    "SECRET-LANDING-LIB": 0,
+    "SECRET-IAN-PASSAGE": 0,
+    "SITTING-PASSAGE": 0,
+    "YOUR-CLOSET": 0,
+    "IRIS-CLOSET": 0,
+    "WENDISH-CORNER": 0,
+    "MIDPOINT": 0,
+    "DRAWING-CLOSET": 0,
+    "GALLERY-CORNER": 0,
+    "HYDE-CLOSET": 0
+  },
+  "roomObjects": {
+    "GARDEN": [
+      {
+        "d": "goldfish pond",
+        "t": false
+      }
+    ],
+    "FOYER": [
+      {
+        "d": "umbrella stand",
+        "t": false
+      },
+      {
+        "d": "coat rack",
+        "t": false
+      },
+      {
+        "d": "Lord Jack",
+        "t": false
+      }
+    ],
+    "DRAWING-ROOM": [
+      {
+        "d": "Deirdre's portrait",
+        "t": false
+      },
+      {
+        "d": "tapestry",
+        "t": false
+      },
+      {
+        "d": "armchair",
+        "t": false
+      },
+      {
+        "d": "Hyde",
+        "t": false
+      },
+      {
+        "d": "Vivien",
+        "t": false
+      }
+    ],
+    "GREAT-HALL": [
+      {
+        "d": "suit of armour",
+        "t": false
+      },
+      {
+        "d": "Iris",
+        "t": false
+      },
+      {
+        "d": "Ian",
+        "t": false
+      }
+    ],
+    "SITTING-ROOM": [
+      {
+        "d": "window seat",
+        "t": false
+      },
+      {
+        "d": "writing desk",
+        "t": false
+      },
+      {
+        "d": "piano",
+        "t": false
+      }
+    ],
+    "DINING-ROOM": [
+      {
+        "d": "bronze bust",
+        "t": true
+      },
+      {
+        "d": "dining table",
+        "t": false
+      },
+      {
+        "d": "chair",
+        "t": false
+      },
+      {
+        "d": "sideboard",
+        "t": false
+      }
+    ],
+    "KITCHEN": [
+      {
+        "d": "brass lantern",
+        "t": true
+      }
+    ],
+    "GALLERY": [
+      {
+        "d": "series of oil paintings",
+        "t": false
+      }
+    ],
+    "YOUR-ROOM": [
+      {
+        "d": "your bed",
+        "t": false
+      },
+      {
+        "d": "night table",
+        "t": false
+      },
+      {
+        "d": "dressing table",
+        "t": false
+      },
+      {
+        "d": "bench",
+        "t": false
+      },
+      {
+        "d": "wall mirror",
+        "t": true
+      },
+      {
+        "d": "hidden switch",
+        "t": true
+      },
+      {
+        "d": "wardrobe",
+        "t": false
+      },
+      {
+        "d": "chest of drawers",
+        "t": false
+      },
+      {
+        "d": "wing chair",
+        "t": false
+      }
+    ],
+    "IRIS-ROOM": [
+      {
+        "d": "love seat",
+        "t": false
+      }
+    ],
+    "WENDISH-ROOM": [
+      {
+        "d": "ornate candle sconce",
+        "t": true
+      },
+      {
+        "d": "armchair",
+        "t": false
+      },
+      {
+        "d": "medical text",
+        "t": false
+      },
+      {
+        "d": "WENDISH-KIT",
+        "t": true
+      }
+    ],
+    "VIVIEN-ROOM": [
+      {
+        "d": "art supplies",
+        "t": false
+      },
+      {
+        "d": "VIVIEN-BOX",
+        "t": true
+      },
+      {
+        "d": "sculpted figurine",
+        "t": true
+      },
+      {
+        "d": "chaise longue",
+        "t": false
+      }
+    ],
+    "IAN-ROOM": [
+      {
+        "d": "andiron",
+        "t": false
+      },
+      {
+        "d": "reclining Morris chair",
+        "t": false
+      }
+    ],
+    "HYDE-ROOM": [
+      {
+        "d": "armchair",
+        "t": false
+      }
+    ],
+    "OFFICE": [
+      {
+        "d": "haunting",
+        "t": false
+      },
+      {
+        "d": "old-fashioned desk",
+        "t": false
+      },
+      {
+        "d": "computer",
+        "t": false
+      }
+    ],
+    "OLD-GREAT-HALL": [
+      {
+        "d": "memento",
+        "t": false
+      },
+      {
+        "d": "memento",
+        "t": false
+      }
+    ],
+    "BASEMENT": [
+      {
+        "d": "wine rack",
+        "t": true
+      },
+      {
+        "d": "bunch of loose bricks",
+        "t": false
+      },
+      {
+        "d": "ancient well",
+        "t": false
+      }
+    ],
+    "CRYPT": [
+      {
+        "d": "skeleton",
+        "t": false
+      }
+    ],
+    "DUNGEON": [
+      {
+        "d": "iron maiden",
+        "t": false
+      }
+    ],
+    "TOMB": [
+      {
+        "d": "stone coffin",
+        "t": false
+      }
+    ],
+    "CORR-2": [
+      {
+        "d": "family crest",
+        "t": true
+      }
+    ],
+    "JACK-ROOM": [
+      {
+        "d": "telescope",
+        "t": true
+      }
+    ],
+    "LIBRARY": [
+      {
+        "d": "armchair",
+        "t": false
+      },
+      {
+        "d": "table",
+        "t": false
+      },
+      {
+        "d": "bunch of books",
+        "t": true
+      },
+      {
+        "d": "BOOKCASE",
+        "t": false
+      }
+    ],
+    "TAMARA-ROOM": [
+      {
+        "d": "bed",
+        "t": false
+      },
+      {
+        "d": "jewelry case",
+        "t": true
+      }
+    ],
+    "LUMBER-ROOM": [
+      {
+        "d": "ancient chest",
+        "t": false
+      },
+      {
+        "d": "sunken handle",
+        "t": true
+      },
+      {
+        "d": "magazine",
+        "t": true
+      }
+    ],
+    "CHAPEL": [
+      {
+        "d": "stained-glass window",
+        "t": false
+      }
+    ],
+    "GAME-ROOM": [
+      {
+        "d": "stuffed buffalo head",
+        "t": false
+      },
+      {
+        "d": "stuffed rhino head",
+        "t": true
+      }
+    ],
+    "DECK": [
+      {
+        "d": "bell",
+        "t": false
+      }
+    ]
+  },
+  "startRoom": "DRIVEWAY"
+}
