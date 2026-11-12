@@ -523,10 +523,10 @@ async function sendCommand(cmd){
     if(roomZil){
       var rd=MAP.rooms[roomZil]?MAP.rooms[roomZil].desc:data.room;
       updateRoomInfo(roomZil,rd,data.score,data.moves);
-    }else if(data.score!==undefined){
-      updateTime(data.score,data.moves);
-      document.getElementById('moves').textContent=data.moves;
+    }else if(data.room_zil){
+      updateRoomInfo(data.room_zil,null,data.score,data.moves);
     }
+    // Don't update time/score when there's no room (non-room commands keep previous state)
     setConn('connected','connected');
   }catch(err){addOutput('<span class="error">Error: '+escHtml(err.message)+'</span>');setConn('error','error');}
   busy=false;document.getElementById('send-btn').disabled=false;

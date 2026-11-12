@@ -38,7 +38,10 @@ class DfrotzSession:
         self.save_dir = os.path.join(SAVE_DIR, self.session_id)
         os.makedirs(self.save_dir, exist_ok=True)
         self.proc = None
+        self.buffer = []
         self.lock = threading.Lock()
+        self.resolve_callback = None
+        self.response_timer = None
         self.last_activity = time.time()
         self._start()
 
@@ -51,66 +54,92 @@ class DfrotzSession:
             text=True,
             bufsize=1,
         )
-        # Consume startup output — read lines until we see the first prompt
-        # Moonmist prints intro text then "What would you like to do?"
-        try:
-            for _ in range(50):
-                line = self.proc.stdout.readline()
-                if not line:
-                    break
-                if 'What would you like to do?' in line:
-                    break
-                if 'What next?' in line:
-                    break
-        except Exception:
-            pass
+        self.buffer = []
+        self.resolve_callback = None
+        self.response_timer = None
+
+        def reader():
+            try:
+                for line in self.proc.stdout:
+                    with self.lock:
+                        self.buffer.append(line)
+                        if self.resolve_callback:
+                            if self.response_timer:
+                                self.response_timer.cancel()
+                            self.response_timer = threading.Timer(0.5, self._fire_callback)
+                            self.response_timer.start()
+            except (ValueError, OSError):
+                pass
+
+        t = threading.Thread(target=reader, daemon=True)
+        t.start()
+        # Consume startup output — wait for the first quiet period
+        time.sleep(2)
+        with self.lock:
+            self.buffer = []
+
+    def _fire_callback(self):
+        with self.lock:
+            if self.resolve_callback:
+                cb = self.resolve_callback
+                self.resolve_callback = None
+                self.response_timer = None
+                output = ''.join(self.buffer)
+                self.buffer = []
+                cb(output)
 
     def send(self, command):
         self.last_activity = time.time()
         with self.lock:
-            parts = command.strip().split(None, 1)
-            verb = parts[0].lower() if parts else ''
-            full_input = command
+            self.buffer = []
+            if self.response_timer:
+                self.response_timer.cancel()
+                self.response_timer = None
 
-            if verb in ('save', 'restore', 'load'):
-                if len(parts) > 1:
-                    user_fn = os.path.basename(parts[1].strip())
-                    if not user_fn:
-                        user_fn = 'save.qzl'
-                else:
+        result_holder = {'result': None}
+
+        def callback(output):
+            result_holder['result'] = output
+
+        with self.lock:
+            self.resolve_callback = callback
+
+        parts = command.strip().split(None, 1)
+        verb = parts[0].lower() if parts else ''
+        full_input = command
+
+        if verb in ('save', 'restore', 'load'):
+            if len(parts) > 1:
+                user_fn = os.path.basename(parts[1].strip())
+                if not user_fn:
                     user_fn = 'save.qzl'
-                save_path = os.path.join(self.save_dir, user_fn)
-                full_input = verb + '\n' + save_path
+            else:
+                user_fn = 'save.qzl'
+            save_path = os.path.join(self.save_dir, user_fn)
+            full_input = verb + '\n' + save_path
 
-            try:
-                self.proc.stdin.write(full_input + '\n')
-                self.proc.stdin.flush()
-            except (BrokenPipeError, OSError):
-                self._start()
-                self.proc.stdin.write(full_input + '\n')
-                self.proc.stdin.flush()
+        try:
+            self.proc.stdin.write(full_input + '\n')
+            self.proc.stdin.flush()
+        except (BrokenPipeError, OSError):
+            self._start()
+            self.proc.stdin.write(full_input + '\n')
+            self.proc.stdin.flush()
 
-            # Read response lines until quiet period
-            response_lines = []
-            start_time = time.time()
-            quiet_timer = time.time()
-            while time.time() - start_time < 15:
-                line = self.proc.stdout.readline()
-                if line:
-                    response_lines.append(line)
-                    quiet_timer = time.time()
-                    # If we see a prompt-like ending, we can stop early
-                    if 'What next?' in line or 'What would you like to do?' in line:
-                        # Read one more line in case there's trailing output
-                        time.sleep(0.05)
-                        break
-                else:
-                    # No more data — check if we've been quiet for 400ms
-                    if time.time() - quiet_timer > 0.4:
-                        break
-                    time.sleep(0.05)
+        for _ in range(150):
+            if result_holder['result'] is not None:
+                break
+            time.sleep(0.1)
 
-            raw = ''.join(response_lines)
+        if result_holder['result'] is None:
+            with self.lock:
+                self.resolve_callback = None
+                if self.response_timer:
+                    self.response_timer.cancel()
+                    self.response_timer = None
+            return {'command': command, 'room': '', 'score': 0, 'moves': 0, 'text': '(timeout)'}
+
+        raw = result_holder['result']
         return self._parse(raw, command)
 
     def _parse(self, raw, command):
@@ -150,6 +179,38 @@ class DfrotzSession:
                 clean = re.sub(r'\s*Time:.*$', '', clean).strip()
                 if clean: room_name = clean
                 break
+
+        # If no status line found, the response is just text (e.g. game prompts)
+        # Strip leading > from lines and use the entire output as body
+        if status_idx == -1:
+            body_lines = []
+            for line in lines:
+                stripped = line.strip()
+                # Skip empty lines at the start
+                if not stripped and not body_lines:
+                    continue
+                # Strip leading > prompt character
+                if stripped.startswith('>'):
+                    stripped = stripped[1:].strip()
+                    if stripped:
+                        body_lines.append(stripped)
+                else:
+                    body_lines.append(line)
+                # Skip dfrotz debug messages in brackets
+            # Remove trailing empty lines and bracket-only debug lines
+            while body_lines:
+                last = body_lines[-1].strip()
+                if last == '' or last.startswith('[') or last in ('What next?', 'What would you like to do?'):
+                    body_lines.pop()
+                else:
+                    break
+            return {
+                'command': command,
+                'room': '',
+                'score': 0,
+                'moves': 0,
+                'text': '\n'.join(body_lines).strip(),
+            }
 
         body_lines = []
         in_body = False
