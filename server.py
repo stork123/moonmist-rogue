@@ -165,6 +165,14 @@ class DfrotzSession:
         while body_lines and body_lines[-1].strip() == '':
             body_lines.pop()
 
+        # Strip Moonmist's "What next?" / "What would you like to do?" prompt
+        while body_lines:
+            last = body_lines[-1].strip()
+            if last in ('What next?', 'What would you like to do?'):
+                body_lines.pop()
+            else:
+                break
+
         return {
             'command': command,
             'room': room_name,
